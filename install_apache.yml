@@ -4,7 +4,7 @@
   become: true
   tasks:
 
-  - name: install the apache2, apache2 php package and pip(python3) for Debian
+  - name: install the apache2, apache2 php package and pip-python3 for Debian
     apt:
       name:
         - apache2

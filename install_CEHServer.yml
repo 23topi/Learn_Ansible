@@ -1,15 +1,15 @@
 
-
+---
 - hosts: all
   become: true
   tasks:
 
-  - name: update apt repository index
+  - name: update apt repository
     apt:
      update_cache: yes
     when: ansible_distribution in ["Ubuntu", "Debian"]
 
-  - name: install the CEHv9 Multifunction Server
+  - name:
     apt:
       name:
         - apache2
@@ -21,6 +21,4 @@
         - proftpd
         - postfix
       state: latest
-    when: ansible_distribution == "Debian"
-
-     
+    when: ansible_distribution == "Debian" 

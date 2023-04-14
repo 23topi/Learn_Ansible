@@ -1,13 +1,15 @@
+
 ---
 - hosts: all
   become: true
   tasks:
 
-  - name: install the apache2 and php package for Debian
+  - name: install the apache2, apache2 php package and pip(python3) for Debian
     apt:
       name:
         - apache2
         - libapache2-mod-php
+        - python3-pip  
       state: latest
       update_cache: yes
     when: ansible_distribution == "Debian"
@@ -15,4 +17,4 @@
   - name: install pip for python3
     apt:
      name:
-       - python3-pip
+      

@@ -3,7 +3,7 @@
   become: true
   tasks:
 
-  - name: install the apache2, apache2 php package and pip-python3 for Debian
+  - name: install the apache2, apache2 php package and pip-python3 for Debian or Ubuntu
     apt:
       name:
         - apache2
@@ -11,6 +11,6 @@
         - python3-pip  
       state: latest
       update_cache: yes
-    when: ansible_distribution == "Debian"
+    when: ansible_distribution in ["Debian", "Ubuntu"]
 
       

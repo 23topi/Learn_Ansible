@@ -1,0 +1,37 @@
+
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install ProFTP Server
+    apt:
+      name:
+         - proftpd
+      state: latest
+
+  - name: update apt repository index
+    apt:
+     update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+
+  - name: install the CEHv9 Multifunction Server
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+        - bind9
+        - ntp
+        - samba
+        - SNMPd
+      state: latest
+    when: ansible_distribution == "Debian"
+
+  - name: install pip for python3
+    apt:
+     name:
+       - python3-pip
+     
+  - name: install postfix mailserver
+    apt: pkg=postfix state=latest
+

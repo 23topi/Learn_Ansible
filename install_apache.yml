@@ -3,19 +3,16 @@
   become: true
   tasks:
 
-  - name: update apt repository index
+  - name: install the apache2 and php package for Debian
     apt:
-     update_cache: yes
-    when: ansible_distribution in ["Ubuntu", "Debian"]
-
-  - name: install the apache to package
-    apt:
-      name: apache2
+      name:
+        - apache2
+        - libapache2-mod-php
       state: latest
-    when: ansible_distribution in ["Ubuntu", "Debian"]
- 
-  - name: add php support for apache
-    apt:
-     name: libapache2-mod-php
-     state: latest
+      update_cache: yes
     when: ansible_distribution == "Debian"
+
+  - name: install pip for python3
+    apt:
+     name:
+       - python3-pip

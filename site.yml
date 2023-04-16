@@ -42,7 +42,7 @@
     package:
       name: samba
       state: latest
-    when: ansible_distribution == "Debian"
+    when: ansible_distribution in ("Debian", "Ubuntu")
 
  
 

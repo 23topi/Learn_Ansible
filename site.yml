@@ -2,7 +2,7 @@
 
 - hosts: all
   become: true
-  tasks:
+  pre_tasks:
   
   - name: install_updates (Debian)
     apt:
@@ -23,4 +23,28 @@
       state: latest
     when: ansible_distribution == "Debian"  
 
+- hosts: db_servers
+  become: true
+  tasks:
+  
+  - name: install mariadb package (Debian)
+    apt:
+      name: mariadb-server
+      state: latest
+    when: ansible_distribution == "Debian"      
+
+
+- hosts: file_servers
+  become: true
+  tasks:
+  
+  - name: install Samba packae
+    package:
+      name: samba
+      state: latest
+    when: ansible_distribution == "Debian"
+
  
+
+
+

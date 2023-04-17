@@ -25,6 +25,31 @@
       state: latest
     when: ansible_distribution == "Debian"  
 
+  - name: start apach2 service		
+    tags: apache2,service
+    service:
+      name: apache2
+      state: started
+      enabled: yes	
+    when: ansible_distribution == "Debian"
+
+  - name: change e-mail address for admin
+    tags: apache,apache2,httpd
+    lineinfile:
+      path: /etc/apache2/adminmail
+      regexp: '^ServerAdmin'
+      line: ServerAdmin kevin23@localhost.io
+    when: ansible_distribution == "Debian"
+    register: apache2
+
+  - name: restart apache2
+    tags: apach2,apache,service
+    service:
+      name: apache2
+      state: restarted
+    when: apache2.changed
+
+
   - name: copy defautl html file for site
     tags: apache,apache2,httpd
     copy: 
@@ -76,9 +101,7 @@
       group: root
 
 
-- hosts: web_servers
-  become: true
-   
+  
 
 
 

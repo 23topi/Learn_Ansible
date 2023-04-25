@@ -1,11 +1,17 @@
 ---
 
+
 - hosts: [CEH_servers]
   become: true
   tasks:
     - name: create user
       user:
-        name: bob,bill    
+        name: alice
+        password: alice1 | password_hash ('sha512')
+        name: bob
+        password: bob1 | password_hash ('sha512')
+        name: tent
+        password: tent1  | password_hash ('sha512')
 
 
 - hosts: [CEH_servers]

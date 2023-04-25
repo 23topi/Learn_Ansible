@@ -19,13 +19,14 @@
     tags: always
     user:
       name: simone
-      groups: root
+    
+  groups: root
 
   - name: add ssh key for simone
-    tags: always 
-    authorized_key: 
-      user: simone
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFMiBFyswQkKd5SUxFm08WIz9NOHHBU+I+ER/zKfL9fh ansible"
+      tags: always 
+      authorized_key: 
+        user: simone
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFMiBFyswQkKd5SUxFm08WIz9NOHHBU+I+ER/zKfL9fh ansible"
 
   - name: add sudoers
     tags: always
